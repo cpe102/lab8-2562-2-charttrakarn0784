@@ -2,8 +2,16 @@
 #include<iomanip> //For using setw(), setprecision(), ...
 using namespace std;
 
-int main(){	
-
+int main()
+{	
+	double PrevBalance,Interest,Payment,Total,NewBalance;
+	cout << "Enter initial loan: ";
+	cin >> PrevBalance;
+	cout << "Enter interest rate per year (%): ";
+	cin >> Interest;
+	Interest = Interest/100;
+	cout << "Enter amount you can pay per year: ";
+	cin >> Payment;	
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
 	//Try to change from 'left' to 'right' and see the effect
@@ -14,17 +22,25 @@ int main(){
 	cout << setw(13) << left << "Payment";
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
-	
 	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
 	//you can change input argument of 'setprecision()' to see the effect
+	NewBalance = PrevBalance;
+	for(int year = 1;NewBalance>0;year++)
+{
 	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
+	cout << setw(13) << left << year; 
+	cout << setw(13) << left << PrevBalance;
+	cout << setw(13) << left << Interest*PrevBalance; // interest = (%/100)*balance
+	Total = (Interest*PrevBalance)+PrevBalance;
+	cout << setw(13) << left << Total; // total = balance+interest
+	if(Payment > Total) Payment = Total;
+	cout << setw(13) << left << Payment; // payment ต้องใส่ if PrevBalance < payment ใช้ Prev..
+	NewBalance = Total - Payment;
+	cout << setw(13) << left << NewBalance;
+	PrevBalance = NewBalance;
+	cout << "\n";
+}
 	
 	return 0;
 }
+
