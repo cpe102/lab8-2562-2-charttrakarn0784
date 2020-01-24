@@ -1,8 +1,23 @@
 #include<iostream>
 using namespace std;
 
-//Write the function printO() here
-
+void printO(int M,int N) // M แถวดิ่ง N แถวขวาง
+{
+	if(M <= 0 || N <= 0)
+	{
+		cout << "Invalid Input\n";
+	}else
+	{
+		for(int i = 0;i < M;i++)
+		{
+			for(int j = 0;j < N;j++)
+			{
+				cout << "O";
+			}
+		cout << "\n";
+		}
+	}
+}
 int main(){
 	
 	printO(2,2);
